@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stepanovynwa.github.io/schet/sitemap.xml
+Sitemap: https://example.github.io/invoice/sitemap.xml
