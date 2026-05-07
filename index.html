@@ -1150,8 +1150,23 @@ const CONFIG = {
   EGRUL_API: 'https://egrul.org', // public API, 100 req/day, no auth (demo only — replace with DaData proxy in production)
   MAX_GUEST_PDF_PER_DAY: 5,
   STORAGE_DRAFT_KEY: 'ipdoki.invoice.draft.v1',
-  STORAGE_PDF_COUNT_KEY: 'ipdoki.invoice.pdf_count.v1'
+  STORAGE_PDF_COUNT_KEY: 'ipdoki.invoice.pdf_count.v1',
+  YM_COUNTER: 109095050
 };
+
+/* ============================================================
+   ANALYTICS
+   Safe wrapper: doesn't crash if Metrika is blocked or not loaded.
+============================================================ */
+function trackGoal(name, params) {
+  try {
+    if (typeof window.ym === 'function') {
+      window.ym(CONFIG.YM_COUNTER, 'reachGoal', name, params || {});
+    }
+  } catch (e) {
+    // analytics must never break the app
+  }
+}
 
 const VAT_RATES = {
   'without_vat': null,
@@ -2208,6 +2223,11 @@ async function generatePDF() {
 
   bumpDailyCount();
   showToast('PDF готов: ' + filename, 'success');
+  trackGoal('pdf_generated', {
+    seller_form: data.seller.form,
+    items_count: data.items.length,
+    has_qr: !!data.include_qr
+  });
 }
 
 /* ============================================================
@@ -2440,9 +2460,9 @@ function bindEvents() {
   $('#seller-bic').addEventListener('input', debouncedBIC);
 
   // Buttons
-  $('#btn-download').addEventListener('click', generatePDF);
-  $('#btn-download-2').addEventListener('click', generatePDF);
-  $('#btn-load-demo').addEventListener('click', loadDemoData);
+  $('#btn-download').addEventListener('click', () => { trackGoal('click_download'); generatePDF(); });
+  $('#btn-download-2').addEventListener('click', () => { trackGoal('click_download'); generatePDF(); });
+  $('#btn-load-demo').addEventListener('click', () => { trackGoal('load_demo'); loadDemoData(); });
   $('#btn-clear').addEventListener('click', () => {
     if (confirm('Очистить форму? Черновик будет удалён.')) {
       localStorage.removeItem(CONFIG.STORAGE_DRAFT_KEY);
@@ -2457,7 +2477,7 @@ function bindEvents() {
   if (barPv) barPv.addEventListener('click', () => {
     $('#preview-col').classList.toggle('mobile-open');
   });
-  $('#btn-mobile-download').addEventListener('click', generatePDF);
+  $('#btn-mobile-download').addEventListener('click', () => { trackGoal('click_download'); generatePDF(); });
   // Legacy FAB (hidden via CSS, but keep listener defensive in case of older layout)
   const fab = $('#btn-mobile-preview-fab');
   if (fab) fab.addEventListener('click', () => {
