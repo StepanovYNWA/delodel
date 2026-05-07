@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Счёт на оплату — генератор для ИП, ООО и самозанятых</title>
+<title>Счёт на оплату — генератор для ИП, ООО и самозанятых · ipdoki.ru</title>
 <meta name="description" content="Создайте счёт на оплату онлайн за 60 секунд. Автозаполнение по ИНН, QR-код по ГОСТ, поддержка ИП, ООО и самозанятых. Без регистрации." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://stepanovynwa.github.io/schet/" />
+<link rel="canonical" href="https://ipdoki.ru/schet/" />
 
 <!-- Open Graph (Telegram, WhatsApp, ВК) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Счёт на оплату — генератор для ИП, ООО и самозанятых" />
-<meta property="og:description" content="Создайте счёт на оплату онлайн за 60 секунд. Автозаполнение по ИНН, QR-код по ГОСТ, поддержка ИП, ООО и самозанятых. Без регистрации." />
-<meta property="og:url" content="https://stepanovynwa.github.io/schet/" />
+<meta property="og:title" content="Счёт на оплату за 60 секунд — ipdoki.ru" />
+<meta property="og:description" content="Создайте счёт на оплату онлайн с автозаполнением по ИНН и QR-кодом по ГОСТ. Для ИП, ООО и самозанятых. Без регистрации." />
+<meta property="og:url" content="https://ipdoki.ru/schet/" />
 <meta property="og:locale" content="ru_RU" />
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Счёт на оплату — генератор онлайн" />
-<meta name="twitter:description" content="Создайте счёт на оплату за 60 секунд. ИП, ООО, самозанятые. QR-код по ГОСТ." />
+<meta name="twitter:title" content="Счёт на оплату за 60 секунд — ipdoki.ru" />
+<meta name="twitter:description" content="Создайте счёт онлайн. ИП, ООО, самозанятые. QR-код по ГОСТ." />
 
 <!-- Favicon (inline SVG, no extra file needed) -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23c9352f'/%3E%3Ctext x='50' y='66' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23fff' text-anchor='middle'%3E%E2%82%BD%3C/text%3E%3C/svg%3E" />
@@ -30,7 +30,7 @@
   "@type": "WebApplication",
   "name": "Генератор счёта на оплату",
   "description": "Онлайн-сервис для создания счёта на оплату для ИП, ООО и самозанятых. Поддерживает автозаполнение по ИНН, QR-код по ГОСТ Р 56042-2014, экспорт в PDF.",
-  "url": "https://stepanovynwa.github.io/schet/",
+  "url": "https://ipdoki.ru/schet/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Any",
   "offers": {
@@ -827,7 +827,7 @@ textarea { resize: vertical; min-height: 60px; }
   <div class="topbar-inner">
     <a href="/" class="brand">
       <span class="brand-mark"></span>
-      <span>bizbox</span>
+      <span>ipdoki</span>
       <span class="brand-tag">demo</span>
     </a>
     <nav class="topbar-nav">
@@ -1151,8 +1151,8 @@ textarea { resize: vertical; min-height: 60px; }
 const CONFIG = {
   EGRUL_API: 'https://egrul.org', // public API, 100 req/day, no auth (demo only — replace with DaData proxy in production)
   MAX_GUEST_PDF_PER_DAY: 5,
-  STORAGE_DRAFT_KEY: 'bizbox.invoice.draft.v1',
-  STORAGE_PDF_COUNT_KEY: 'bizbox.invoice.pdf_count.v1'
+  STORAGE_DRAFT_KEY: 'ipdoki.invoice.draft.v1',
+  STORAGE_PDF_COUNT_KEY: 'ipdoki.invoice.pdf_count.v1'
 };
 
 const VAT_RATES = {
@@ -1757,7 +1757,7 @@ function renderPreview() {
       ` : ''}
     </div>
 
-    <div class="preview-watermark">Создано на bizbox.ru — счёт онлайн за 60 секунд</div>
+    <div class="preview-watermark">Создано на ipdoki.ru — счёт онлайн за 60 секунд</div>
   `;
 
   $('#preview-paper').innerHTML = html;
@@ -2202,7 +2202,7 @@ async function generatePDF() {
   // === Footer watermark ===
   doc.setFontSize(7);
   doc.setTextColor(150,150,150);
-  doc.text('Создано на bizbox.ru — счёт онлайн за 60 секунд', PAGE_W/2, PAGE_H - 8, { align: 'center' });
+  doc.text('Создано на ipdoki.ru — счёт онлайн за 60 секунд', PAGE_W/2, PAGE_H - 8, { align: 'center' });
 
   // === Save ===
   const filename = `Счёт_№${data.invoice_number}_от_${data.invoice_date}.pdf`;
