@@ -170,20 +170,18 @@ body {
   text-decoration: none;
 }
 .brand-mark {
-  display: inline-block;
   width: 24px;
   height: 24px;
   background: var(--accent);
+  color: #fff;
   border-radius: 4px;
-  position: relative;
+  display: inline-grid;
+  place-items: center;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
   transform: translateY(4px);
-}
-.brand-mark::after {
-  content: '';
-  position: absolute;
-  inset: 5px 5px 5px 5px;
-  border: 2px solid var(--paper);
-  border-radius: 1px;
 }
 .brand-tag {
   font-family: 'Inter Tight', sans-serif;
@@ -862,7 +860,7 @@ textarea { resize: vertical; min-height: 60px; }
 <header class="topbar">
   <div class="topbar-inner">
     <a href="/" class="brand">
-      <span class="brand-mark"></span>
+      <span class="brand-mark">i</span>
       <span>ipdoki</span>
       <span class="brand-tag">demo</span>
     </a>
